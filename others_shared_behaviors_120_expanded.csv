@@ -1,0 +1,38 @@
+Pathogen,Taxonomy,Similar Pathogens,Shared Molecular Target,Cure / Vaccine / Suppressant
+Plasmodium falciparum,Protozoa > Apicomplexa,"Plasmodium vivax, Toxoplasma gondii","DHFR, ATPase6","Artemisinin, Chloroquine, Pyrimethamine"
+Plasmodium vivax,Protozoa > Apicomplexa,"Plasmodium falciparum, Babesia microti","DHFR, DHPS","Primaquine, Chloroquine"
+Trypanosoma brucei,Protozoa > Kinetoplastida,"Leishmania donovani, Trypanosoma cruzi",Trypanothione reductase,"Eflornithine, Nifurtimox"
+Trypanosoma cruzi,Protozoa > Kinetoplastida,Trypanosoma brucei,CYP51,"Benznidazole, Nifurtimox"
+Leishmania donovani,Protozoa > Kinetoplastida,"Trypanosoma brucei, Leishmania major",Trypanothione reductase,"Amphotericin B, Miltefosine"
+Leishmania major,Protozoa > Kinetoplastida,Leishmania donovani,Sterol 14α-demethylase,"Sodium stibogluconate, Paromomycin"
+Toxoplasma gondii,Protozoa > Apicomplexa,Plasmodium falciparum,"DHFR, CPSF3","Pyrimethamine, Sulfadiazine"
+Giardia lamblia,Protozoa > Diplomonadida,Entamoeba histolytica,Pyruvate:ferredoxin oxidoreductase,"Metronidazole, Tinidazole"
+Entamoeba histolytica,Protozoa > Amoebozoa,Giardia lamblia,PFOR,"Metronidazole, Paromomycin"
+Cryptosporidium parvum,Protozoa > Apicomplexa,Toxoplasma gondii,"CPSF3, IMPDH",Nitazoxanide
+Babesia microti,Protozoa > Apicomplexa,Plasmodium vivax,DHFR,"Atovaquone, Azithromycin"
+Naegleria fowleri,Protozoa > Percolozoa,Acanthamoeba castellanii,CYP51,"Miltefosine, Amphotericin B"
+Acanthamoeba castellanii,Protozoa > Amoebozoa,Naegleria fowleri,Ergosterol biosynthesis,Polyhexamethylene biguanide
+Balantidium coli,Protozoa > Ciliophora,Entamoeba histolytica,Tubulin,"Tetracycline, Metronidazole"
+Trichomonas vaginalis,Protozoa > Parabasalia,Giardia lamblia,PFOR,"Metronidazole, Tinidazole"
+Schistosoma mansoni,Helminth > Trematoda,Schistosoma haematobium,"ATPase, Tubulin",Praziquantel
+Schistosoma haematobium,Helminth > Trematoda,Schistosoma mansoni,Calcium ion channels,Praziquantel
+Ascaris lumbricoides,Helminth > Nematoda,Trichuris trichiura,Beta-tubulin,"Albendazole, Mebendazole"
+Trichuris trichiura,Helminth > Nematoda,Ascaris lumbricoides,Tubulin,"Albendazole, Mebendazole"
+Ancylostoma duodenale,Helminth > Nematoda,Necator americanus,Acetylcholinesterase,Pyrantel pamoate
+Necator americanus,Helminth > Nematoda,Ancylostoma duodenale,Glutamate-gated chloride channel,Ivermectin
+Strongyloides stercoralis,Helminth > Nematoda,Ascaris lumbricoides,GABA receptor,Ivermectin
+Wuchereria bancrofti,Helminth > Nematoda,Brugia malayi,Microtubule assembly,Diethylcarbamazine
+Brugia malayi,Helminth > Nematoda,Wuchereria bancrofti,Glutamate-gated chloride channel,Ivermectin
+Onchocerca volvulus,Helminth > Nematoda,Loa loa,GABA receptor,Ivermectin
+Loa loa,Helminth > Nematoda,Onchocerca volvulus,Tubulin,Diethylcarbamazine
+Taenia solium,Helminth > Cestoda,Echinococcus granulosus,Microtubule polymerization,"Praziquantel, Albendazole"
+Echinococcus granulosus,Helminth > Cestoda,Taenia solium,Tubulin,Albendazole
+Diphyllobothrium latum,Helminth > Cestoda,Taenia saginata,Tubulin,Praziquantel
+Fasciola hepatica,Helminth > Trematoda,Clonorchis sinensis,Microtubule assembly,Triclabendazole
+Clonorchis sinensis,Helminth > Trematoda,Fasciola hepatica,Tubulin,Praziquantel
+Prion (CJD),Prion > Proteinaceous Infectious Agent,"Variant CJD, Kuru",PrPSc protein,"No cure, experimental quinacrine"
+Variant CJD,Prion > Proteinaceous Infectious Agent,Prion (CJD),PrPSc,No cure
+Kuru,Prion > Proteinaceous Infectious Agent,CJD,PrPSc,No cure
+Fatal Familial Insomnia,Prion > Proteinaceous Infectious Agent,CJD,PrPSc,No cure
+Enterocytozoon bieneusi,Microsporidia > Fungi-related,Encephalitozoon intestinalis,Beta-tubulin,Albendazole
+Encephalitozoon intestinalis,Microsporidia > Fungi-related,Enterocytozoon bieneusi,Tubulin,Albendazole
