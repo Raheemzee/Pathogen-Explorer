@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathogen Explorer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('/static/background.jpg'); 
+      background-size: cover;     
+      background-position: center; 
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      color: #222222;
+      margin: 60px;
+    }
+    h1 {
+      text-align: center;
+      color: #d100f5;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    .btn:hover {
+      opacity: 0.85;
+    }
+    .virus {
+      background-color: #007bff;
+    }
+    .bacteria {
+      background-color: #e83e8c;
+    }
+    .fungi {
+      background-color: #ffc107;
+      color: #000;
+    }
+    .others {
+      background-color: #41e865;
+    }
+    .dropdown-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      min-width: 300px;
+    }
+    .details-box {
+      margin-top: 30px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f1f1;
+      width: 35%;
+    }
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pathogen Explorer</h1>
+
+  <div class="button-container">
+    <button class="btn virus" onclick="loadPathogens('virus')">Virus</button>
+    <button class="btn bacteria" onclick="loadPathogens('bacteria')">Bacteria</button>
+    <button class="btn fungi" onclick="loadPathogens('fungi')">Fungi</button>
+    <button class="btn others" onclick="loadPathogens('others')">Others</button>
+  </div>
+
+  <div class="dropdown-container">
+    <select id="pathogenDropdown" onchange="loadDetails()" disabled>
+      <option value="">Select a pathogen</option>
+    </select>
+  </div>
+
+  <div class="details-box" id="detailsBox"></div>
+
+  <script>
+    let currentCategory = "";
+
+    function loadPathogens(category) {
+      currentCategory = category;
+      fetch(`/get_pathogens/${category}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const dropdown = document.getElementById("pathogenDropdown");
+          dropdown.innerHTML = `<option value="">Select a pathogen</option>`;
+          if (data.error) {
+            alert(data.error);
+            dropdown.disabled = true;
+            return;
+          }
+          data.pathogens.forEach((pathogen) => {
+            const option = document.createElement("option");
+            option.value = pathogen;
+            option.textContent = pathogen;
+            dropdown.appendChild(option);
+          });
+          dropdown.disabled = false;
+        })
+        .catch((err) => console.error("Error fetching pathogens:", err));
+    }
+
+    function loadDetails() {
+      const pathogen = document.getElementById("pathogenDropdown").value;
+      if (!pathogen || !currentCategory) return;
+
+      fetch(`/get_details/${currentCategory}/${pathogen}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const detailsBox = document.getElementById("detailsBox");
+          if (data.error) {
+            detailsBox.innerHTML = `<p style="color:red;">${data.error}</p>`;
+            return;
+          }
+
+          // Automatically detect the main name column
+          const name =
+            data.Virus ||
+            data.Bacterium ||
+            data.Fungus ||
+            data.Pathogen ||
+            pathogen;
+
+          let html = `<h3 style="margin-bottom:10px;">${name}</h3>`;
+          html += `<table>`;
+
+          // Display all other columns dynamically
+          Object.entries(data).forEach(([key, value]) => {
+            if (
+              ["virus", "bacterium", "fungus", "pathogen"].includes(
+                key.toLowerCase()
+              )
+            )
+              return; // Skip the name column
+            html += `
+              <tr>
+                <th>${key}</th>
+                <td>${value && value.trim() !== "" ? value : "N/A"}</td>
+              </tr>
+            `;
+          });
+
+          html += `</table>`;
+          detailsBox.innerHTML = html;
+        })
+        .catch((err) => console.error("Error fetching details:", err));
+    }
+  </script>
+</body>
+</html>
